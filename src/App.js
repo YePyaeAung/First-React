@@ -8,18 +8,19 @@ class App extends Component {
     this.state = {
       movies: [],
       showMovie: false,
+      searchInput: '',
     };
   }
   componentDidMount() {
     fetch("https://my-json-server.typicode.com/horizon-code-academy/fake-movies-api/movies")
     .then((response) => response.json())
     .then((apiMovies) => this.setState(() => {
-      return { movies: apiMovies };
+      return { movies: apiMovies, showMovie: true };
     }));
   }
   render() {
     let { showMovie } = this.state;
-    let renderMovies = null;
+    let renderMovies = "Loading Movies...";
 
     if(showMovie) {
       renderMovies = (
@@ -34,9 +35,12 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hello World...</h1>
-        <button onClick={ () => { this.setState({ showMovie: !showMovie })} }>
-          { showMovie ? "Hide Movies" : "Show Movies"}
-        </button>
+        <input type='search' placeholder="Search Movies" onChange={ (event) => {
+          const search = event.target.value;
+          this.setState( () => {
+            return { searchInput: search };
+          });
+        }}/>
         { renderMovies }
       </div>
     );
