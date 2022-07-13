@@ -7,6 +7,7 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
+      showMovie: false,
     };
   }
   componentDidMount() {
@@ -17,13 +18,26 @@ class App extends Component {
     }));
   }
   render() {
-    return (
-      <div className="App">
-        <h1>Hello World...</h1>
-        { this.state.movies.map((movie) => {
+    let { showMovie } = this.state;
+    let renderMovies = null;
+
+    if(showMovie) {
+      renderMovies = (
+        <div>
+          { this.state.movies.map((movie) => {
           return <h3 key={movie.Title}>
             My Favourite Movie is { movie.Title }. Released Year is { movie.Year }</h3>
         })}
+        </div>
+      );
+    }
+    return (
+      <div className="App">
+        <h1>Hello World...</h1>
+        <button onClick={ () => { this.setState({ showMovie: !showMovie })} }>
+          { showMovie ? "Hide Movies" : "Show Movies"}
+        </button>
+        { renderMovies }
       </div>
     );
   }
