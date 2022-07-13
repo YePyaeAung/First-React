@@ -18,14 +18,24 @@ class App extends Component {
       return { movies: apiMovies, showMovie: true };
     }));
   }
+  searchMoviesHandler = (event) => {
+    const search = event.target.value.toLocaleLowerCase();
+    this.setState( () => {
+      return { searchInput: search };
+    });
+  }
   render() {
-    let { showMovie } = this.state;
+    let { showMovie, movies, searchInput } = this.state;
     let renderMovies = "Loading Movies...";
+
+    const filteredMovies = movies.filter((movie) => {
+      return movie.Title.toLocaleLowerCase().includes(searchInput);
+    });
 
     if(showMovie) {
       renderMovies = (
         <div>
-          { this.state.movies.map((movie) => {
+          { filteredMovies.map((movie) => {
           return <h3 key={movie.Title}>
             My Favourite Movie is { movie.Title }. Released Year is { movie.Year }</h3>
         })}
@@ -35,12 +45,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hello World...</h1>
-        <input type='search' placeholder="Search Movies" onChange={ (event) => {
-          const search = event.target.value;
-          this.setState( () => {
-            return { searchInput: search };
-          });
-        }}/>
+        <input type='search' placeholder="Search Movies" onChange={ this.searchMoviesHandler }/>
         { renderMovies }
       </div>
     );
