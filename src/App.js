@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import MovieList from './Components/movie-list/movie-list';
 
 class App extends Component {
   constructor() {
@@ -34,12 +35,7 @@ class App extends Component {
 
     if(showMovie) {
       renderMovies = (
-        <div>
-          { filteredMovies.map((movie) => {
-          return <h3 key={movie.Title}>
-            My Favourite Movie is { movie.Title }. Released Year is { movie.Year }</h3>
-        })}
-        </div>
+        <MovieList movies = { filteredMovies }/>
       );
     }
     return (
