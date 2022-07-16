@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import MovieList from './Components/movie-list/movie-list';
 
@@ -39,9 +38,11 @@ class App extends Component {
       );
     }
     return (
-      <div className="App">
-        <h1>Hello World...</h1>
-        <input type='search' placeholder="Search Movies" onChange={ this.searchMoviesHandler }/>
+      <div className="max-w-6xl mx-auto bg-slate-200">
+        <h1 className="flex justify-center text-2xl font-semibold">Hello World...</h1>
+        <div className="flex justify-center">
+          <input className="m-2 p-2 text-grey-400 rounded-md" type='search' placeholder="Search Movies" onChange={ this.searchMoviesHandler }/>
+        </div>
         { renderMovies }
       </div>
     );
