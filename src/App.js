@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import MovieList from "./Components/movie-list/movie-list";
 import About from "./Pages/About";
+import MovieDetails from "./Pages/MovieDetails";
 
 const App = () => {
   const [ movies, setMovies ] = useState([]);
@@ -9,7 +10,7 @@ const App = () => {
   const [ searchInput, setSearchInput ] = useState('');
 
   useEffect(() => {
-    fetch("https://my-json-server.typicode.com/horizon-code-academy/fake-movies-api/movies")
+    fetch("http://localhost:8000/movies")
     .then((response) => response.json())
     .then((apiMovies) => {
       setMovies(apiMovies);
@@ -39,6 +40,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={renderMovies}></Route>
         <Route path="/about" element={<About/>}></Route>
+        <Route path="/movies/:id" element={<MovieDetails/>}></Route>
       </Routes>
     </div>
   );
