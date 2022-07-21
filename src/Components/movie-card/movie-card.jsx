@@ -13,8 +13,8 @@ const MovieCard = ({movie}) => {
                         { Title }
                     </h5>
                 </Link>
-                <span className="mr-4">{ Year }</span>
-                <span>{ Runtime }</span>
+                <span className="m-2 p-2 bg-slate-300 text-slate-800 rounded-md">{ Year }</span>
+                <span className="m-2 p-2 bg-slate-300 text-slate-800 rounded-md">{ Runtime }</span>
             </div>
         </div>
     )
